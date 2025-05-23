@@ -1,0 +1,191 @@
+.gallery-bg {
+  padding: 120px 0;
+}
+
+.gallery h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.gallery-menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.gallery-menu li {
+  position: relative;
+  cursor: pointer;
+}
+
+.gallery-menu li:hover::after, .gallery-menu li.active-nav::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--cor-c11);
+  position: absolute;
+}
+
+.bares,
+.eventos,
+.deportes,
+.retratos,
+.videos {
+  display: none; /* Ocultas por defecto */
+  padding: 0 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 25px; /* Aumentado el espacio entre imágenes */
+  grid-template-areas:
+    "all-4 all-6 all-2"
+    "all-1 all-6 all-5"
+    "all-1 all-3 all-5"
+    "all-1 all-3 all-5";
+}
+
+/* Esta clase es crítica - controla qué galería es visible */
+.bares.active,
+.eventos.active,
+.deportes.active,
+.retratos.active,
+.videos.active {
+  display: grid !important; /* Añadir !important para forzar visualización */
+}
+
+/* Estilos para las imágenes dentro de la galería */
+[data-gallery] div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+/* Contenedor para cada imagen en la galería */
+[data-gallery] div {
+  overflow: hidden;
+  position: relative;
+  animation: show .5s forwards;
+  height: 200px; /* Altura reducida para mejor visualización */
+}
+
+/* Efecto hover para las imágenes */
+[data-gallery] div img:hover {
+  transform: scale(1.03);
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: translate3d(0,-40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Ajustes específicos para imágenes más grandes */
+.all-1, .all-5, .all-6 {
+  height: 320px !important; /* Altura reducida para imágenes destacadas */
+}
+
+.all-1 { grid-area: all-1; }
+.all-2 { grid-area: all-2; }
+.all-3 { grid-area: all-3; }
+.all-4 { grid-area: all-4; }
+.all-5 { grid-area: all-5; }
+.all-6 { grid-area: all-6; }
+
+/* Media query para pantallas grandes */
+@media(min-width:1200px) {
+  [data-gallery] div {
+    height: 250px; /* Altura ligeramente mayor para pantallas grandes */
+  }
+  .all-1, .all-5, .all-6 {
+    height: 370px !important; /* Altura para imágenes destacadas en pantallas grandes */
+  }
+  .bares,
+  .eventos,
+  .deportes,
+  .retratos,
+  .videos {
+    gap: 30px; /* Mayor espacio entre imágenes en pantallas grandes */
+  }
+}
+
+@media(max-width:750px) {
+  .gallery-bg {
+    padding: 80px 0;
+  }
+  .gallery h1 {
+    margin-bottom: 24px;
+  }
+  .bares,
+  .eventos,
+  .deportes,
+  .retratos,
+  .videos {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "all-6 all-5"
+      "all-6 all-5"
+      "all-4 all-5"
+      "all-1 all-2"
+      "all-1 all-3"
+      "all-1 all-3";
+  }
+  [data-gallery] div {
+    height: 180px; /* Altura reducida para tablets */
+  }
+  .all-1, .all-5, .all-6 {
+    height: 250px !important; /* Altura reducida para imágenes destacadas en tablets */
+  }
+  .gallery-menu {
+    gap: 36px;
+    margin-bottom: 36px;
+  }
+  [data-gallery] div {
+    animation: showRight .3s forwards;
+  }
+  @keyframes showRight {
+    from {
+      opacity: 0;
+      transform: translate3d(-30px,0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+@media(max-width: 520px) {
+  .bares,
+  .eventos,
+  .deportes,
+  .retratos,
+  .videos {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "all-6"
+      "all-5"
+      "all-4"
+      "all-2"
+      "all-1"
+      "all-3";
+  }
+  [data-gallery] div {
+    height: 180px; /* Altura reducida para móviles */
+  }
+  .all-1, .all-5, .all-6 {
+    height: 220px !important; /* Altura reducida para imágenes destacadas en móviles */
+  }
+  .gallery-menu {
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+}

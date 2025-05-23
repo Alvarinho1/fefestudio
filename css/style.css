@@ -1,0 +1,77 @@
+/* Utilidades */
+@import "css/utilidades/global.css";
+@import "css/utilidades/cores.css";
+@import "css/utilidades/tipografia.css";
+@import "css/utilidades/animacao.css";
+
+/* Conteúdo*/
+@import "../css/conteudo/header.css";
+@import "css/conteudo/home.css";
+@import "css/conteudo/about.css";
+@import "css/conteudo/gallery.css";
+@import "css/conteudo/blog.css";
+@import "css/conteudo/testimonials.css";
+@import "css/conteudo/contact.css";
+@import "css/conteudo/footer.css"; /* Asegurarnos que el footer sea el último en cargar */
+
+/* Estilos globales adicionales */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.photos-gallery .videos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+}
+
+.photos-gallery .videos video {
+  max-width: 700px;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Lightbox para imágenes */
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+.photos-gallery img {
+  cursor: pointer;
+  max-width: 900px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  display: block;
+  margin: 0 auto;
+}
