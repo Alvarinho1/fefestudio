@@ -16,62 +16,96 @@
 
 /* Estilos globales adicionales */
 html {
-  overflow-x: hidden;
+  overflow-x: hidden; /* Previene barras de desplazamiento horizontales */
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
 }
 
-.photos-gallery .videos {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 44px;
+/* Configuración de la cuadrícula de imágenes/videos de la galería */
+.photos-gallery > div[data-category] {
+  display: grid; /* Establece un layout de cuadrícula */
+  grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual tamaño */
+  gap: 32px; /* Espacio entre elementos de la cuadrícula */
+  justify-items: center; /* Centra horizontalmente cada elemento en su celda */
+  align-items: center; /* Centra verticalmente cada elemento en su celda */
 }
 
+/* Estilo para imágenes y videos dentro de la galería */
+.photos-gallery img,
 .photos-gallery .videos video {
-  max-width: 700px;
-  width: 100%;
-  display: block;
-  margin: 0 auto;
+  width: 100%; /* Ocupa todo el ancho disponible de su contenedor */
+  max-width: 800px; /* Limita el ancho máximo para evitar imágenes demasiado grandes */
+  object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin deformarse */
+  margin: 0; /* Elimina márgenes para alineación precisa */
+  transition: transform 0.3s; /* Transición suave para el efecto hover */
+  cursor: pointer; /* Indica que el elemento es clickeable */
 }
 
-/* Lightbox para imágenes */
+/* Efecto hover para imágenes */
+.photos-gallery img:hover {
+  transform: scale(1.02); /* Ligero zoom al pasar el cursor */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15); /* Sombra más pronunciada al pasar el cursor */
+}
+
+/* Lightbox para visualización de imágenes a pantalla completa */
 .lightbox-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  position: fixed; /* Fijo en pantalla */
+  top: 0; left: 0; right: 0; bottom: 0; /* Ocupa toda la pantalla */
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.85); /* Fondo oscuro semitransparente */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 9999; /* Asegura que esté por encima de todo */
   cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
+  opacity: 0; /* Invisible por defecto */
+  pointer-events: none; /* No interactuable por defecto */
+  transition: opacity 0.2s; /* Transición suave al aparecer/desaparecer */
+  align-items: center;
+  justify-content: center;
 }
+
 .lightbox-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 1; /* Visible cuando está activo */
+  pointer-events: auto; /* Interactuable cuando está activo */
 }
+
 .lightbox-overlay img {
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 90vw; /* Máximo 90% del ancho de la ventana */
+  max-height: 90vh; /* Máximo 90% de la altura de la ventana */
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  border-radius: 12px;
-  background: #fff;
+  background: #fff; /* Fondo blanco para imágenes con transparencia */
   cursor: pointer;
 }
-.photos-gallery img {
-  cursor: pointer;
-  max-width: 900px;
-  width: 100%;
+
+/* Estilos específicos para la sección de videos en la galería */
+.photos-gallery .videos {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  display: block;
+  gap: 32px;
+  width: 100%;
+}
+
+.photos-gallery .videos video {
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
+  display: block;
+}
+
+/* Media queries para responsive */
+@media (max-width: 800px) {
+  .photos-gallery > div[data-category] {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+  }
+}
+
+@media (max-width: 500px) {
+  .photos-gallery > div[data-category] {
+    grid-template-columns: 1fr; /* 1 columna en pantallas pequeñas */
+  }
 }

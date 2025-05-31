@@ -22,12 +22,7 @@
     <header class="header-bg">
       <div class="header container">
         <a href="#"
-          ><img
-            src="./icones/fernanda-logo.svg"
-            width="132"
-            height="29"
-            alt="Logo Fernanda Lagos"
-        /></a>
+          a>
         <nav aria-label="primaria">
           <span class="hamburguer" data-btn="mobile"></span>
           <ul class="header-menu cor-w font-1-m">
@@ -545,11 +540,6 @@
             </div>
             <button class="buttom-2 font-5-m cor-w">Enviar mensaje</button>
           </form>
-          <ul class="font-2-s cor-10">
-            <li class="location-black">Dirección por definir</li>
-            <li class="email-black">fernanda@fotografia.com</li>
-            <li class="phone-black">+56 9 1234 5678</li>
-          </ul>
         </div>
       </div>
     </article>
@@ -557,16 +547,10 @@
     <footer class="footer-bg">
       <div class="footer container">
         <div class="contacts">
-          <img
-            width="132"
-            height="29"
-            src="./icones/fernanda-logo.svg"
-            alt="Logo Fernanda Lagos"
-          />
+        
           <ul class="font-2-s cor-c5">
-            <li class="location">Dirección por definir</li>
+            <li class="location">Concepción - Los Ángeles</li>
             <li class="email">fernanda@fotografia.com</li>
-            <li class="phone">+56 9 1234 5678</li>
           </ul>
         </div>
         <div class="innerLinks">
@@ -592,9 +576,6 @@
       </p>
     </footer>
 
-    <div class="lightbox-overlay" id="lightbox" tabindex="-1">
-      <img src="" alt="Imagen expandida" id="lightbox-img" />
-    </div>
     <script src="./js/plugin/simple-anime.js"></script>
     <script type="module" src="./js/script.js"></script>
     <script>
@@ -623,33 +604,6 @@
               }
             });
           });
-        });
-      });
-
-      // Lightbox para imágenes
-      document.addEventListener('DOMContentLoaded', function() {
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        document.querySelectorAll('.photos-gallery img').forEach(img => {
-          img.style.cursor = 'zoom-in';
-          img.addEventListener('click', function() {
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-            lightbox.focus();
-          });
-        });
-        // Cerrar al hacer click fuera o presionar Escape
-        lightbox.addEventListener('click', function(e) {
-          if (e.target === lightbox) {
-            lightbox.classList.remove('active');
-            lightboxImg.src = '';
-          }
-        });
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            lightbox.classList.remove('active');
-            lightboxImg.src = '';
-          }
         });
       });
     </script>
